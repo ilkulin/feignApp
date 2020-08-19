@@ -19,7 +19,7 @@ public class AuthErrorHandler extends HttpServlet {
     @Override
     protected void service(HttpServletRequest request, HttpServletResponse response) throws IOException {
         int status = response.getStatus();
-        ErrorProps errorProps = new ErrorProps(status, "Client is not authenticated");
+        ErrorProps errorProps = new ErrorProps(status, "Client is not authorized");
         responseHelper.sendJsonResponse(response, errorProps, status);
     }
 }
