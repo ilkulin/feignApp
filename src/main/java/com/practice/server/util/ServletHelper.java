@@ -1,6 +1,5 @@
 package com.practice.server.util;
 
-
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -11,11 +10,11 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.time.LocalDate;
 
-public class ResponseHelper {
+public class ServletHelper {
 
     private Gson gson;
 
-    private ResponseHelper() {
+    private ServletHelper() {
         gson = new GsonBuilder()
                 .setPrettyPrinting()
                 .registerTypeAdapter(LocalDate.class, new LocalDateAdapter())
@@ -28,7 +27,7 @@ public class ResponseHelper {
         String line;
         while ((line = reader.readLine()) != null) {
             myresult += line;
-        }
+    }
         return myresult;
     }
 
@@ -42,11 +41,11 @@ public class ResponseHelper {
         writer.flush();
     }
 
-    public static ResponseHelper getInstance() {
-        return ResponseHelper.InstanceHolder.INSTANCE;
+    public static ServletHelper getInstance() {
+        return ServletHelper.InstanceHolder.INSTANCE;
     }
 
     private static class InstanceHolder {
-        private static final ResponseHelper INSTANCE = new ResponseHelper();
+        private static final ServletHelper INSTANCE = new ServletHelper();
     }
 }

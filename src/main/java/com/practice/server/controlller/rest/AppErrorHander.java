@@ -1,22 +1,19 @@
 package com.practice.server.controlller.rest;
 
 import com.practice.server.util.ErrorProps;
-import com.practice.server.util.ResponseHelper;
+import com.practice.server.util.ServletHelper;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-import static javax.servlet.RequestDispatcher.ERROR_EXCEPTION;
-import static javax.servlet.http.HttpServletResponse.SC_BAD_REQUEST;
-
 public class AppErrorHander extends HttpServlet {
 
-    private ResponseHelper responseHelper;
+    private ServletHelper servletHelper;
 
     public AppErrorHander() {
-        responseHelper = ResponseHelper.getInstance();
+        servletHelper = ServletHelper.getInstance();
     }
 
     @Override
@@ -24,6 +21,6 @@ public class AppErrorHander extends HttpServlet {
         int status = response.getStatus();
         String exceptionMessage = (String) request.getAttribute("javax.servlet.error.message");
         ErrorProps errorProps = new ErrorProps(status, exceptionMessage);
-        responseHelper.sendJsonResponse(response, errorProps, status);
+        servletHelper.sendJsonResponse(response, errorProps, status);
     }
 }
